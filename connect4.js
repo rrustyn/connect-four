@@ -73,7 +73,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  for (let y = board.length - 1; y > -1; y--) {
+  for (let y = HEIGHT - 1; y >= 0; y--) {
     if (board[y][x] === null) {
       return y;
     }
@@ -123,7 +123,7 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  if (board.every(y => y.every(x => x !== null))) { endGame('Tie!'); };
+  if (board[0].every(y => y.every(x => x !== null))) { endGame('Tie!'); };
 
   // switch players
   // switch currPlayer 1 <-> 2
@@ -141,9 +141,7 @@ function checkForWin() {
    */
   function _win(cells) {
     
-    for (let cell of cells) {
-      const x = cell[1];
-      const y = cell[0];
+    for (let [y,x] of cells) {
       if (x >= WIDTH || y >= HEIGHT || board[y][x] !== currPlayer) {
         return false;
       } 
@@ -166,10 +164,10 @@ function checkForWin() {
       // each should be an array of 4 cell coordinates:
       // [ [y, x], [y, x], [y, x], [y, x] ]
 
-      let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-      let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+      const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+      const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
