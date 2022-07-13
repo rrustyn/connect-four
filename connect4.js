@@ -86,6 +86,7 @@ function findSpotForCol(x) {
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   const piece = document.createElement("div");
+  piece.classList.add("piece", `p${currPlayer}`);
   const tableCell = document.getElementById(`${y}-${x}`);
 
   tableCell.append(piece);
@@ -95,7 +96,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
+  alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
