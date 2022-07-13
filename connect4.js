@@ -51,20 +51,22 @@ function makeHtmlBoard() {
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
-  for (var y = 0; y < HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
+  for (let y = 0; y < HEIGHT; y++) {
+    // Create a table row element and assign to a "row" variable
+    let boardRow = document.createElement('tr');
+      //need to ID?
 
-    for (var x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
-
-      // TODO: add an id, y-x, to the above table cell element
+    for (let x = 0; x < WIDTH; x++) {
+      // Create a table cell element and assign to a "cell" variable
+      let boardCell = document.createElement('td');
+      // add an id, y-x, to the above table cell element
       // you'll use this later, so make sure you use y-x
-
-      // TODO: append the table cell to the table row
-
+      boardCell.setAttribute('id', `${y}-${x}`);
+      // append the table cell to the table row
+      boardRow.append(boardCell);
     }
-    // TODO: append the row to the html board
-
+    //append the row to the html board
+    htmlBoard.append(boardRow);
   }
 }
 
