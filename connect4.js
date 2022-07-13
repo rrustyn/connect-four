@@ -17,7 +17,7 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
-function makeBoard(width=WIDTH,height=HEIGHT) {
+function makeBoard(width = WIDTH, height = HEIGHT) {
   // set "board" to empty HEIGHT x WIDTH matrix array
   for (let y = 0; y < height; y++) {
     board.push([]);
@@ -42,7 +42,7 @@ function makeHtmlBoard() {
 
   // append clickable tiles to top row
   for (let x = 0; x < WIDTH; x++) {
-    let headCell = document.createElement("td");
+    const headCell = document.createElement("td");
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
@@ -53,12 +53,12 @@ function makeHtmlBoard() {
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
     // Create a table row element and assign to a "row" variable
-    let boardRow = document.createElement('tr');
-      //need to ID?
+    const boardRow = document.createElement('tr');
+    //need to ID?
 
     for (let x = 0; x < WIDTH; x++) {
       // Create a table cell element and assign to a "cell" variable
-      let boardCell = document.createElement('td');
+      const boardCell = document.createElement('td');
       // add an id, y-x, to the above table cell element
       // you'll use this later, so make sure you use y-x
       boardCell.setAttribute('id', `${y}-${x}`);
@@ -73,8 +73,13 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  // write the real version of this, rather than always returning 5
+  for (let y = board.length - 1; y > -1; y--) {
+    if (board[y][x] === null) {
+      return y;
+    }
+  }
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
