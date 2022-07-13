@@ -73,7 +73,6 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // write the real version of this, rather than always returning 5
   for (let y = board.length - 1; y > -1; y--) {
     if (board[y][x] === null) {
       return y;
@@ -86,6 +85,11 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const piece = document.createElement("div");
+  const tableCell = document.getElementById(`${y}-${x}`);
+
+  tableCell.append(piece);
+
 }
 
 /** endGame: announce game end */
