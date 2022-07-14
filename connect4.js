@@ -122,8 +122,8 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
-  if (board[0].every(y => y.every(x => x !== null))) { endGame('Tie!'); };
+  // check if all cells in board are filled; if so call, call endGame
+  if (board[0].every(x => x !== null)) { endGame('Tie!') };
 
   // switch players
   // switch currPlayer 1 <-> 2
@@ -140,15 +140,15 @@ function checkForWin() {
    * currPlayer
    */
   function _win(cells) {
-    
+
     for (let [y,x] of cells) {
       if (x >= WIDTH || y >= HEIGHT || board[y][x] !== currPlayer) {
         return false;
-      } 
+      }
     }
-    
+
     return true;
-    
+
 
     // return cells.every(cell => cell === currPlayer);
 
